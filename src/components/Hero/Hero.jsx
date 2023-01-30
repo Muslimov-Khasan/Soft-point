@@ -11,9 +11,15 @@ import "./Hero.scss";
 // Lang
 import Localization from "../../Localization/Localization";
 import useLang from "./../../Hook/useLang";
+import { useRef } from "react";
 
 function Hero() {
+  const inputRef = useRef(null);
   const [lang] = useLang();
+
+  function handleClick() {
+    inputRef.current.focus();
+  }
 
   return (
     <>
@@ -24,11 +30,13 @@ function Hero() {
             <p className="hero__text">{Localization[lang].hero.titleHero2}</p>
             <div className="hero__wrap">
               <input
+                ref={inputRef}
                 className="hero__input"
                 type="email"
+                autocomplete={"off"}
                 placeholder={Localization[lang].hero.titleHero3}
               />
-              <button className="hero__btn">
+              <button className="hero__btn" onClick={handleClick}>
                 {Localization[lang].hero.titleHero4}
               </button>
             </div>
